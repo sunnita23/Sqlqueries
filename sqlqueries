@@ -1,0 +1,14 @@
+Select a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress, nvl(a.PropertyAddress,b.PropertyAddress)
+From PortfolioProject.dbo.NashvilleHousing a
+JOIN PortfolioProject.dbo.NashvilleHousing b
+	on a.ParcelID = b.ParcelID
+	AND a.UniqueID <> b.UniqueID 
+Where a.PropertyAddress is null
+
+Update a
+SET PropertyAddress = nvl(a.PropertyAddress,b.PropertyAddress)
+From PortfolioProject.dbo.NashvilleHousing a
+JOIN PortfolioProject.dbo.NashvilleHousing b
+	on a.ParcelID = b.ParcelID
+	AND a.UniqueID <> b.UniqueID
+Where a.PropertyAddress is null
